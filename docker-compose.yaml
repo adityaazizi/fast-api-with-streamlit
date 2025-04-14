@@ -1,0 +1,35 @@
+# Definisi layanan yang akan dijalankan
+services:
+  # Layanan utama aplikasi
+  app:
+    # Instruksi build untuk container
+    build:
+      # Menggunakan direktori saat ini sebagai context build
+      # Dockerfile akan dicari dari direktori ini
+      context: .
+
+    # Mapping port dari host ke container
+    # Format: "host_port:container_port"
+    ports:
+      - "8080:8080" # FastAPI port
+      - "8501:8501" # Streamlit port
+
+    # Mounting volume dari host ke container
+    # Berguna untuk development agar perubahan kode langsung terlihat tanpa rebuild
+    volumes:
+      - .:/app # Mounting seluruh direktori project ke /app di container
+
+    # Environment variables untuk container
+    environment:
+      - ENV=production # Set mode aplikasi ke production
+
+    # Jaringan yang digunakan oleh container
+    networks:
+      - app-network # Menggunakan jaringan app-network yang didefinisikan di bawah
+
+# Definisi jaringan custom
+networks:
+  # Jaringan bernama app-network
+  app-network:
+    # Menggunakan driver bridge (default untuk komunikasi antar container)
+    driver: bridge
