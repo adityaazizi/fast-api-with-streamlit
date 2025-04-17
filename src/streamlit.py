@@ -5,9 +5,10 @@ import time                         # Untuk menghitung waktu eksekusi
 import base64                       # Untuk decode/encode data gambar
 from PIL import Image               # Untuk manipulasi gambar
 import io                           # Untuk operasi input/output binary
+import os                           # Untuk akses variabel lingkungan
 
 # Definisi URL API endpoint untuk deteksi objek
-API_URL = "http://localhost:8080/predict"
+API_URL = os.getenv(URL, "http://localhost:8080/predict")
 
 # Konfigurasi halaman Streamlit
 st.set_page_config(page_title="YOLO11 Object Detection", layout="wide")

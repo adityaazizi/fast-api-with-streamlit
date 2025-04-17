@@ -28,8 +28,8 @@ COPY . .
 # Expose port yang digunakan aplikasi
 # 8080: Port untuk FastAPI
 # 8501: Port default untuk Streamlit
-EXPOSE 8080 8501
+EXPOSE 8080
 
 # Jalankan FastAPI dan Streamlit secara bersamaan
 # Menggunakan shell command dengan & untuk menjalankan proses secara paralel
-CMD ["sh", "-c", "python src/app.py & streamlit run src/streamlit.py"]
+CMD ["python", "src/app.py"]
